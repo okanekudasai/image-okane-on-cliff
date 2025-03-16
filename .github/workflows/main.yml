@@ -14,7 +14,7 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v2  # 레포지토리의 최신 코드를 체크아웃
 
-    - name: execute remote ssh
+    - name: execute remote ssh!
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_SSH_HOST }}
