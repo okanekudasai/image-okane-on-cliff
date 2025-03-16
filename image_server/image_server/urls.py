@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from image_server import views
 
+contextPath = 'image/'
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello/', views.hello),
+    path(contextPath + 'admin/', admin.site.urls),
+    path(contextPath + 'hello/', views.hello),
 ]

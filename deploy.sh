@@ -26,10 +26,10 @@ pip install -r requirements.txt
 
 SCRIPT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 echo "배포를 시작합니다..."
-cd ./image_server/image_server
+cd ./image_server
 pwd
 ls
-gunicorn --bind 0.0.0.0:9300 image_server.wsgi:application
+# gunicorn --bind 0.0.0.0:9300 image_server.wsgi:application
 
 if [ -f "$VENV_PATH" ]; then
     echo "가상환경을 비활성화합니다..."
