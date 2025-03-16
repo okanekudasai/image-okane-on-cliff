@@ -24,6 +24,9 @@ fi
 echo "의존성을 설치합니다..."
 pip install -r requirements.txt
 
+SCRIPT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+echo $SCRIPT_DIR
+
 if [ -f "$VENV_PATH" ]; then
     echo "가상환경을 비활성화합니다..."
     deactivate
