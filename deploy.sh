@@ -6,7 +6,7 @@ PID=$(lsof -t -i:9300)
 if [ -n "$PID" ]; then
     echo "9300 포트에서 실행 중인 프로세스가 있습니다. PID: $PID"
     echo "프로세스를 종료합니다..."
-    kill -9 $PID
+    fuser -k 9300/tcp
 else
     echo "9300 포트에서 실행 중인 프로세스가 없습니다."
 fi
