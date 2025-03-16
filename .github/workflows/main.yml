@@ -14,17 +14,12 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v2  # 레포지토리의 최신 코드를 체크아웃
 
-    # - name: Set up SSH key
-    #   uses: webfactory/ssh-agent@v0.5.3  # SSH 키 설정
-    #   with:
-    #     ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}  # GitHub Secrets에 저장된 EC2 SSH 개인 키 사용
-
-    - name: SSH into EC2 and pull the latest changes
-      run: |
-        # SSH로 EC2에 접속하고 레포지토리를 pull 받음
-        # ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP_ADDRESS }} << 'EOF'
-          echo "hello"
-          # cd /path/to/your/repository
-          # git pull origin main  # 최신 코드 pull
-          # bash /path/to/your/repository/your-script.sh  # .sh 스크립트 실행
-        # EOF
+    - name: execute remote ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SSH_HOST }}
+          username: ${{ secrets.REMOTE_SSH_USERNAME }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          script: |
+            whoami
