@@ -16,7 +16,13 @@ if [ -f "$VENV_PATH" ]; then
     source "$VENV_PATH"
 else
     echo "가상환경 파일이 존재하지 않습니다: $VENV_PATH"
+    sudo apt install python3-venv
+    echo "가상환경을 활성화합니다..."
+    source "$VENV_PATH"
 fi
+
+echo "의존성을 설치합니다..."
+pip install -r requirements.txt
 
 if [ -f "$VENV_PATH" ]; then
     echo "가상환경을 비활성화합니다..."
