@@ -24,5 +24,4 @@ jobs:
         script: |
           cd /home/ubuntu/image-okane-on-cliff
           git pull
-          chmod +x deploy.sh
           ./deploy.sh
