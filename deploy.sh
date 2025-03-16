@@ -26,6 +26,8 @@ pip install -r requirements.txt
 
 SCRIPT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 echo "배포를 시작합니다..."
+echo pwd
+echo ls
 cd ./image_server
 gunicorn --bind 0.0.0.0:9300 image_server.wsgi:application
 
