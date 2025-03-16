@@ -22,9 +22,9 @@ jobs:
     - name: SSH into EC2 and pull the latest changes
       run: |
         # SSH로 EC2에 접속하고 레포지토리를 pull 받음
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP_ADDRESS }} << 'EOF'
+        # ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP_ADDRESS }} << 'EOF'
           echo "hello"
           # cd /path/to/your/repository
           # git pull origin main  # 최신 코드 pull
           # bash /path/to/your/repository/your-script.sh  # .sh 스크립트 실행
-        EOF
+        # EOF
