@@ -25,9 +25,9 @@ echo "의존성을 설치합니다..."
 pip install -r requirements.txt
 
 SCRIPT_DIR=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
-echo "배포를 시작합니다....."
-echo $SCRIPT_DIR
-gunicorn --bind 0.0.0.0:9300 $SCRIPT_DIR/image_server.wsgi:application
+echo "배포를 시작합니다..."
+cd ./image_server
+gunicorn --bind 0.0.0.0:9300 image_server.wsgi:application
 
 if [ -f "$VENV_PATH" ]; then
     echo "가상환경을 비활성화합니다..."
