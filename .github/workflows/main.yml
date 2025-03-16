@@ -23,3 +23,5 @@ jobs:
         key: ${{ secrets.REMOTE_SSH_KEY }}
         script: |
           echo hello!
+          cd /home/ubuntu/image-okane-on-cliff
+          git pull
