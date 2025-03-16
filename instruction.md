@@ -2,4 +2,5 @@
 ~~~bash
 venv\Scripts\activate
 deactivate
+pip freeze > requirements.txt
 ~~~
