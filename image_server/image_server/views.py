@@ -29,8 +29,6 @@ def saveUploadedImage(image_file, filename):
         return None
     
 def checkAdmin(accessToken, refreshToken):
-    print(accessToken)
-    print(refreshToken)
     headers = {
         'Cookie': f'access={accessToken}; refresh={refreshToken}'
     }
