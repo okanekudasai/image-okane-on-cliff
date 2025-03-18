@@ -32,7 +32,7 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 100MB로 설정 (기본값은 2M
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -66,7 +66,6 @@ MIDDLEWARE = [
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://okane-on-cliff.kro.kr']
-ALLOWED_HOSTS = ['*']
 
 ROOT_URLCONF = 'image_server.urls'
 
