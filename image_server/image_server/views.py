@@ -31,10 +31,25 @@ def uploadImage(request):
     if request.method != "POST":
         return JsonResponse({"message": "잘못된 요청"}, status=400)
     
-    
+    folderName = request.POST.get("folderName")
+    if not folderName:
+        return JsonResponse({"message": "폴더명이 필요합니다."}, status=400)
+    saveDir = os.path.join(SAVE_DIR, folderName)
+    os.makedirs(saveDir, exist_ok=True)
+    files = request.FILES.getlist("images")
+    if not files:
+        return JsonResponse({"message": "이미지가 없습니다."}, status=400)
+    savedFiles = []
+    for index, file in enumerate(files, start=1):
+        file_path = os.path.join(saveDir, f"{index}.jpg")
 
-    save_dir = os.path.join(SAVE_DIR, request.POST.get("folderName"))
-    return HttpResponse(save_dir)
+        # 파일을 디스크에 저장
+        with open(file_path, "wb") as dest:
+            for chunk in file.chunks():
+                dest.write(chunk)
+
+        savedFiles.append(file_path)
+    return JsonResponse({"message": "이미지 저장 성공", "saved_files": savedFiles})
     # if request.method == "POST" and request.FILES.get("image"):
     #     image_file = request.FILES["image"]
     #     file_path = saveUploadedImage(image_file, image_file.name)

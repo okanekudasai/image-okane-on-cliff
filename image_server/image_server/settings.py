@@ -24,6 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
 SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 10MB로 설정 (기본값은 2MB)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 10MB로 설정 (기본값은 2MB)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
