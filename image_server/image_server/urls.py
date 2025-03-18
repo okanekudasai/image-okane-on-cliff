@@ -22,5 +22,6 @@ contextPath = 'image/'
 urlpatterns = [
     path(contextPath + 'admin/', admin.site.urls),
     path(contextPath + 'hello/', views.hello),
-    path(contextPath + 'sayOs/', views.sayOs)
+    path(contextPath + 'sayOs/', views.sayOs),
+    path(contextPath + 'uploadImage/', views.uploadImage),
 ]
