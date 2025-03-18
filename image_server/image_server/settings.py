@@ -63,9 +63,10 @@ MIDDLEWARE = [
 ]
 
 # cors 설정을 위한 예외 설정
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-# CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://okane-on-cliff.kro.kr']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://okane-on-cliff.kro.kr']
+ALLOWED_HOSTS = ['*']
 
 ROOT_URLCONF = 'image_server.urls'
 
