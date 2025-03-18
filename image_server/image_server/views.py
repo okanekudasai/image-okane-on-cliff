@@ -10,7 +10,7 @@ else:  # Linux (Ubuntu)
     SAVE_DIR = "/var/www/html/file"
 
 def hello(request):
-    return HttpResponse("hello world!!!@@@###")
+    return HttpResponse("hello world!")
 
 def sayOs(request):
     return HttpResponse(SAVE_DIR)
