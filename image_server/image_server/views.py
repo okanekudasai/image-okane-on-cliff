@@ -3,9 +3,6 @@ import os
 from django.views.decorators.csrf import csrf_exempt
 import requests
 from dotenv import load_dotenv
-import logging
-
-logger = logging.getLogger(__name__)
 
 if os.name == "nt":  # Windows
     SAVE_DIR = os.path.join(os.path.expanduser("~"), "Desktop", "images")
@@ -13,7 +10,7 @@ else:  # Linux (Ubuntu)
     SAVE_DIR = "/var/www/html/file"
 
 def hello(request):
-    logger.info("hello!")
+    print("hello")
     return HttpResponse("hello world!")
 
 def sayOs(request):
