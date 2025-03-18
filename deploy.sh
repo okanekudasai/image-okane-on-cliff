@@ -16,7 +16,7 @@ if [ -f "$VENV_PATH" ]; then
     source "$VENV_PATH"
 else
     echo "가상환경 파일이 존재하지 않습니다: $VENV_PATH"
-    python3 -m venv myenv
+    python3 -m venv venv
     echo "가상환경을 활성화합니다..."
     source "$VENV_PATH"
 fi

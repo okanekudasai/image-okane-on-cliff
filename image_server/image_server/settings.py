@@ -21,11 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# 그냥 시크릿키는 검색해보니까 필요없는거 같아서 랜덤문자열을 생성하도록 하여 settings.py도 깃에 올릴 수 있도록 함
 chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
 SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 10MB로 설정 (기본값은 2MB)
-FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 10MB로 설정 (기본값은 2MB)
+# 많은 사진을 받을 수 있도록 내가 추가함
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 100MB로 설정 (기본값은 2MB)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 예: 100MB로 설정 (기본값은 2MB)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

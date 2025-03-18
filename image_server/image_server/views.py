@@ -8,7 +8,7 @@ else:  # Linux (Ubuntu)
     SAVE_DIR = "/var/www/html/file"
 
 def hello(request):
-    return HttpResponse("hello world!!!@@@")
+    return HttpResponse("hello world!!!@@@###")
 
 def sayOs(request):
     return HttpResponse(SAVE_DIR)
@@ -50,12 +50,3 @@ def uploadImage(request):
 
         savedFiles.append(file_path)
     return JsonResponse({"message": "이미지 저장 성공", "saved_files": savedFiles})
-    # if request.method == "POST" and request.FILES.get("image"):
-    #     image_file = request.FILES["image"]
-    #     file_path = saveUploadedImage(image_file, image_file.name)
-    #     if file_path:
-    #         return JsonResponse({"message": "이미지 저장 성공", "file_path": file_path})
-    #     else:
-    #         return JsonResponse({"message": "이미지 저장 실패"}, status=500)
-    
-    # return JsonResponse({"message": "잘못된 요청"}, status=400)
