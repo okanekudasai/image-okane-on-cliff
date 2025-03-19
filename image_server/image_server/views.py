@@ -98,7 +98,6 @@ def fetchArticle(request):
     content = request.POST.get("content")
     files = request.FILES.getlist("images")
 
-    return HttpResponse(title)
     # 이 코드블록엔 도달할 수 없음 이미 클라이언트에서 image의 숫자를 판단하는 로직이 있음
     if len(files) == 0:
         return HttpResponse("잘못된 요청")
@@ -114,6 +113,8 @@ def fetchArticle(request):
         "tags": tags,
         "shortContent": content
     }
+
+    return HttpResponse(data)
 
     try:
         response = requests.post(springUrl + "article/admin/doc", json=data, headers=headers)
