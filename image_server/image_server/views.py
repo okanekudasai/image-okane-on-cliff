@@ -89,7 +89,6 @@ def fetchArticle(request):
         return JsonResponse({"message": "잘못된 요청"}, status=400)
     
     accessToken = request.COOKIES.get("access")
-    return HttpResponse(accessToken)
     refreshToken = request.COOKIES.get("refresh")
     
     title = request.POST.get("title")
