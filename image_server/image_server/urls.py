@@ -24,4 +24,5 @@ urlpatterns = [
     path(contextPath + 'hello/', views.hello),
     path(contextPath + 'sayOs/', views.sayOs),
     path(contextPath + 'uploadImage/', views.uploadImage),
+    path(contextPath + 'fetchArticle/', views.fetchArticle),
 ]
