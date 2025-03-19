@@ -89,6 +89,7 @@ def fetchArticle(request):
         return JsonResponse({"message": "잘못된 요청"}, status=400)
     
     accessToken = request.COOKIES.get("access")
+    return HttpResponse(accessToken)
     refreshToken = request.COOKIES.get("refresh")
     
     title = request.POST.get("title")
@@ -113,8 +114,6 @@ def fetchArticle(request):
         "tags": tags,
         "shortContent": content
     }
-
-    return HttpResponse(accessToken)
 
     try:
         response = requests.post(springUrl + "article/admin/doc", json=data, headers=headers)
