@@ -51,37 +51,37 @@ def checkAdmin(accessToken, refreshToken):
     except requests.exceptions.RequestException as e:
         return "request_fail"
 
-@csrf_exempt
-def uploadImage(request):
-    print("왔음!")
-    if request.method != "POST":
-        return JsonResponse({"message": "잘못된 요청"}, status=400)
+# @csrf_exempt
+# def uploadImage(request):
+#     print("왔음!")
+#     if request.method != "POST":
+#         return JsonResponse({"message": "잘못된 요청"}, status=400)
     
-    isAdmin = checkAdmin(request.COOKIES.get("access"), request.COOKIES.get("refresh"))
-    if isAdmin.msg == "success":
-        folderName = isAdmin.docNumber
-        if not folderName:
-            return JsonResponse({"message": "폴더명이 필요합니다."}, status=400)
-        saveDir = os.path.join(SAVE_DIR, folderName)
-        os.makedirs(saveDir, exist_ok=True)
-        files = request.FILES.getlist("images")
-        if not files:
-            return JsonResponse({"message": "이미지가 없습니다."}, status=400)
-        savedFiles = []
-        for index, file in enumerate(files, start=1):
-            file_path = os.path.join(saveDir, f"{index}.jpg")
+#     isAdmin = checkAdmin(request.COOKIES.get("access"), request.COOKIES.get("refresh"))
+#     if isAdmin.msg == "success":
+#         folderName = isAdmin.docNumber
+#         if not folderName:
+#             return JsonResponse({"message": "폴더명이 필요합니다."}, status=400)
+#         saveDir = os.path.join(SAVE_DIR, folderName)
+#         os.makedirs(saveDir, exist_ok=True)
+#         files = request.FILES.getlist("images")
+#         if not files:
+#             return JsonResponse({"message": "이미지가 없습니다."}, status=400)
+#         savedFiles = []
+#         for index, file in enumerate(files, start=1):
+#             file_path = os.path.join(saveDir, f"{index}.jpg")
 
-            # 파일을 디스크에 저장
-            with open(file_path, "wb") as dest:
-                for chunk in file.chunks():
-                    dest.write(chunk)
+#             # 파일을 디스크에 저장
+#             with open(file_path, "wb") as dest:
+#                 for chunk in file.chunks():
+#                     dest.write(chunk)
 
-            savedFiles.append(os.path.join(LOAD_DIR, f"{index}.jpg"))
-        return JsonResponse({"message": "이미지 저장 성공", "saved_files": savedFiles})
-    elif isAdmin == "not_admin":
-        return JsonResponse({"message": "권한 없음"})
-    elif isAdmin == "request_fail":
-        return JsonResponse({"message": "서버 실패"})
+#             savedFiles.append(os.path.join(LOAD_DIR, f"{index}.jpg"))
+#         return JsonResponse({"message": "이미지 저장 성공", "saved_files": savedFiles})
+#     elif isAdmin == "not_admin":
+#         return JsonResponse({"message": "권한 없음"})
+#     elif isAdmin == "request_fail":
+#         return JsonResponse({"message": "서버 실패"})
 
 @csrf_exempt
 def fetchArticle(request):
@@ -97,6 +97,8 @@ def fetchArticle(request):
     tags = request.POST.getlist("tags")
     content = request.POST.get("content")
     files = request.FILES.getlist("images")
+
+    return HttpResponse(title)
     # 이 코드블록엔 도달할 수 없음 이미 클라이언트에서 image의 숫자를 판단하는 로직이 있음
     if len(files) == 0:
         return HttpResponse("잘못된 요청")
