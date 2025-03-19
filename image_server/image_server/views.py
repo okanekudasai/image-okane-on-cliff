@@ -114,6 +114,8 @@ def fetchArticle(request):
         "shortContent": content
     }
 
+    return HttpResponse(accessToken)
+
     try:
         response = requests.post(springUrl + "article/admin/doc", json=data, headers=headers)
         print(response.json())
@@ -121,7 +123,6 @@ def fetchArticle(request):
     except:
         return JsonResponse({"message": "writing error"}, status=400)
 
-    return HttpResponse(folderName + " " + accessToken)
 
     try:
         #이 코드블럭에는 도달 할 일이 없음
