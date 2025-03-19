@@ -20,7 +20,7 @@ def hello(request):
     return HttpResponse("hello world!")
 
 def sayOs(request):
-    return HttpResponse(SAVE_DIR)
+    return HttpResponse(LOAD_DIR)
 
 def saveUploadedImage(image_file, filename):
     try:
