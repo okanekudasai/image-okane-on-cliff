@@ -3,6 +3,15 @@
 :: 가상 환경 활성화
 call venv\Scripts\activate
 
+:: 폴더 삭제
+set folder=%USERPROFILE%\Desktop\images
+if exist "%folder%" (
+    rd /s /q "%folder%"
+)
+
+:: images 폴더 다시 생성
+mkdir "%folder%"
+
 :: 두 번째 서버 실행 (Python HTTP 서버) - 백그라운드 실행
 start python -m http.server 8000 --directory "C:/Users/xpc/Desktop/images"
 

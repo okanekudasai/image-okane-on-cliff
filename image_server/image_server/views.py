@@ -32,7 +32,6 @@ def saveUploadedImage(image_file, filename):
         return file_path
     
     except Exception as e:
-        print(f"이미지 저장 실패: {e}")
         return None
     
 def checkAdmin(accessToken, refreshToken):
@@ -41,7 +40,6 @@ def checkAdmin(accessToken, refreshToken):
     }
     try:
         # 스프링 서버로 요청 보내기
-        print(springUrl + "admin/test")
         response = requests.get(springUrl + "admin/test", headers=headers)
 
         if response.status_code == 200:
@@ -97,6 +95,7 @@ def fetchArticle(request):
     tags = request.POST.getlist("tags")
     content = request.POST.get("content")
     files = request.FILES.getlist("images")
+    docId = request.POST.get("docId")
 
     # 이 코드블록엔 도달할 수 없음 이미 클라이언트에서 image의 숫자를 판단하는 로직이 있음
     if len(files) == 0:
@@ -111,12 +110,12 @@ def fetchArticle(request):
         "categoryId": category,
         "title": title,
         "tags": tags,
-        "shortContent": content
+        "shortContent": content,
+        "docId": docId
     }
 
     try:
         response = requests.post(springUrl + "article/admin/doc", json=data, headers=headers)
-        print(response.json())
         folderName = response.json()
     except:
         return JsonResponse({"message": "writing error"}, status=400)
@@ -131,14 +130,14 @@ def fetchArticle(request):
         os.makedirs(saveDir, exist_ok=True)
         savedFiles = []
         for index, file in enumerate(files):
-            file_path = os.path.join(saveDir, f"{index}.jpg")
+            file_path = os.path.join(saveDir, file.name)
 
             # 파일을 디스크에 저장
             with open(file_path, "wb") as dest:
                 for chunk in file.chunks():
                     dest.write(chunk)
 
-            savedFiles.append(os.path.join(LOAD_DIR, str(folderName), f"{index}.jpg"))
+            savedFiles.append(os.path.join(LOAD_DIR, str(folderName), file.name))
 
         soup = BeautifulSoup(html, 'html.parser')
         img_tags = soup.find_all('img')
@@ -159,7 +158,6 @@ def fetchArticle(request):
             return JsonResponse({"message": "writing error"}, status=400)
 
     except:
-        print("안됨!2")
         requests.delete(springUrl + f"article/admin/{folderName}", headers=headers)
         return JsonResponse({"message": "writing error"}, status=400)
 
